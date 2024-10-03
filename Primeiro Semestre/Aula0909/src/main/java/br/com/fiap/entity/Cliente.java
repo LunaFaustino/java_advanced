@@ -57,7 +57,7 @@ public class Cliente {
 
     @PostPersist // executa o método após o persist
     private void executar(){
-        System.out.println("Executando o método...");
+        System.out.println("    Executando o método...");
     }
 
     public Integer getId() {
