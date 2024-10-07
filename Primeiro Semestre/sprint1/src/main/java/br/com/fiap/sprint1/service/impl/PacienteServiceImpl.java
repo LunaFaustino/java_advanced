@@ -22,18 +22,18 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public Paciente atualizarPaciente(int id, Paciente paciente) {
+    public Paciente atualizarPaciente(Integer id, Paciente paciente) {
         paciente.setId(id);
         return pacienteRepository.save(paciente);
     }
 
     @Override
-    public void deletarPaciente(int id) {
+    public void deletarPaciente(Integer id) {
         pacienteRepository.deleteById(id);
     }
 
     @Override
-    public Paciente obterPacientePorId(int id) {
+    public Paciente obterPacientePorId(Integer id) {
         return pacienteRepository.findById(id).orElse(null);
     }
 

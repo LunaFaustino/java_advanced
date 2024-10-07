@@ -7,8 +7,8 @@ import java.util.List;
 public interface ClinicaService {
 
     Clinica salvarClinica(Clinica clinica);;
-    Clinica atualizarClinica(int id,Clinica clinica);
-    void deletarClinica(int id);
-    Clinica obterClinicaPorId(int id);
+    Clinica atualizarClinica(Integer id,Clinica clinica);
+    void deletarClinica(Integer id);
+    Clinica obterClinicaPorId(Integer id);
     List<Clinica> listarTodasClinicas();
 }

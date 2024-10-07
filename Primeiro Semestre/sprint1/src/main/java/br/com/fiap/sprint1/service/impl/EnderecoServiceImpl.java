@@ -22,18 +22,18 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public Endereco atualizarEndereco(int id, Endereco endereco) {
+    public Endereco atualizarEndereco(Integer id, Endereco endereco) {
         endereco.setId(id);
         return enderecoRepository.save(endereco);
     }
 
     @Override
-    public void deletarEndereco(int id) {
+    public void deletarEndereco(Integer id) {
         enderecoRepository.deleteById(id);
     }
 
     @Override
-    public Endereco obterEnderecoPorId(int id) {
+    public Endereco obterEnderecoPorId(Integer id) {
         return enderecoRepository.findById(id).orElse(null);
     }
 

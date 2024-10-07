@@ -22,23 +22,23 @@ public class DentistaServiceImpl implements DentistaService {
     }
 
     @Override
-    public Dentista atualizarDentista(int id, Dentista dentista) {
+    public Dentista atualizarDentista(Integer id, Dentista dentista) {
         dentista.setId(id);
         return dentistaRepository.save(dentista);
     }
 
     @Override
-    public void deletarDentista(int id) {
+    public void deletarDentista(Integer id) {
         dentistaRepository.deleteById(id);
     }
 
     @Override
-    public Dentista obterDentistaPorId(int id) {
+    public Dentista obterDentistaPorId(Integer id) {
         return dentistaRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Dentista> obterTodosDentistas() {
+    public List<Dentista> listarTodosDentistas() {
         return dentistaRepository.findAll();
     }
 }

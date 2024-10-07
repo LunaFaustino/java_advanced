@@ -22,18 +22,18 @@ public class ClinicaServiceImpl implements ClinicaService {
     }
 
     @Override
-    public Clinica atualizarClinica(int id, Clinica clinica) {
+    public Clinica atualizarClinica(Integer id, Clinica clinica) {
         clinica.setId(id);
         return clinicaRepository.save(clinica);
     }
 
     @Override
-    public void deletarClinica(int id) {
+    public void deletarClinica(Integer id) {
         clinicaRepository.deleteById(id);
     }
 
     @Override
-    public Clinica obterClinicaPorId(int id) {
+    public Clinica obterClinicaPorId(Integer id) {
         return clinicaRepository.findById(id).orElse(null);
     }
 

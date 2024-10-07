@@ -3,7 +3,7 @@ package br.com.fiap.sprint1.models;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_paciente")
@@ -11,7 +11,7 @@ import java.util.Calendar;
 public class Paciente {
 
     @Id
-    @Column(name = "id_cliente")
+    @Column(name = "id_paciente")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paciente")
     private int id;
 
@@ -21,9 +21,8 @@ public class Paciente {
     @Column(name = "nr_idade", nullable = false)
     private int idade;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "dt_nascimento")
-    private Calendar dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(name = "nr_cpf", nullable = false, length = 11)
     private String cpf;
@@ -32,7 +31,7 @@ public class Paciente {
     private String email;
 
     @Column(name = "nr_tel")
-    private int telefone;
+    private Long telefone;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ds_genero", length = 10)
@@ -43,9 +42,8 @@ public class Paciente {
     private Status status;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_cadastro", updatable = false)
-    private Calendar dataCadastro;
+    private LocalDate dataCadastro;
 
     @ManyToOne
     @JoinColumn(name = "id_clinica", nullable = false)
@@ -57,7 +55,7 @@ public class Paciente {
 
     public Paciente() {}
 
-    public Paciente(String nome, int idade, Calendar dataNascimento, String cpf, String email, int telefone, Genero genero, Status status, Clinica clinica, Endereco endereco) {
+    public Paciente(String nome, int idade, LocalDate dataNascimento, String cpf, String email, Long telefone, Genero genero, Status status, Clinica clinica, Endereco endereco) {
         this.nome = nome;
         this.idade = idade;
         this.dataNascimento = dataNascimento;
@@ -102,13 +100,6 @@ public class Paciente {
         this.idade = idade;
     }
 
-    public Calendar getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Calendar dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
 
     public String getCpf() {
         return cpf;
@@ -126,11 +117,11 @@ public class Paciente {
         this.email = email;
     }
 
-    public int getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 
@@ -142,11 +133,19 @@ public class Paciente {
         this.genero = genero;
     }
 
-    public Calendar getDataCadastro() {
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Calendar dataCadastro) {
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

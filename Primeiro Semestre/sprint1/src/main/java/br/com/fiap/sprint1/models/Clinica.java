@@ -3,7 +3,9 @@ package br.com.fiap.sprint1.models;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_clinica")
@@ -28,7 +30,7 @@ public class Clinica {
     private String email;
 
     @Column(name = "nr_tel")
-    private int telefone;
+    private Long telefone;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ds_porte", length = 10)
@@ -38,22 +40,26 @@ public class Clinica {
     @Column(name = "st_status", nullable = false, length = 10)
     private Status status;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "dt_abertura")
-    private Calendar dataAbertura;
+    private LocalDate dataAbertura;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_cadastro", updatable = false)
-    private Calendar dataCadastro;
+    private LocalDate dataCadastro;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
     private Endereco endereco;
 
+    @OneToMany(mappedBy = "clinica", cascade = CascadeType.ALL)
+    private List<Paciente> pacientes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "clinica", cascade = CascadeType.ALL)
+    private List<Dentista> dentistas = new ArrayList<>();
+
     public Clinica() {}
 
-    public Clinica(String razaoSocial, String nomeFantasia, String cnpj, String email, int telefone, Porte porte, Status status, Calendar dataAbertura, Endereco endereco) {
+    public Clinica(String razaoSocial, String nomeFantasia, String cnpj, String email, Long telefone, Porte porte, Status status, LocalDate dataAbertura, Endereco endereco) {
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
@@ -71,6 +77,22 @@ public class Clinica {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public List<Dentista> getDentistas() {
+        return dentistas;
+    }
+
+    public void setDentistas(List<Dentista> dentistas) {
+        this.dentistas = dentistas;
     }
 
     public String getRazaoSocial() {
@@ -105,11 +127,11 @@ public class Clinica {
         this.email = email;
     }
 
-    public int getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 
@@ -129,19 +151,19 @@ public class Clinica {
         this.status = status;
     }
 
-    public Calendar getDataAbertura() {
+    public LocalDate getDataAbertura() {
         return dataAbertura;
     }
 
-    public void setDataAbertura(Calendar dataAbertura) {
+    public void setDataAbertura(LocalDate dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
 
-    public Calendar getDataCadastro() {
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Calendar dataCadastro) {
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

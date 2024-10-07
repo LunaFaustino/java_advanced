@@ -3,7 +3,7 @@ package br.com.fiap.sprint1.models;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_dentista")
@@ -24,8 +24,8 @@ public class Dentista {
     @Column(name = "ds_email", nullable = false)
     private String email;
 
-    @Column(name = "nr_tel", nullable = false)
-    private int telefone;
+    @Column(name = "nr_tel")
+    private Long telefone;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ds_genero", length = 10)
@@ -36,9 +36,8 @@ public class Dentista {
     private Status status;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_cadastro",updatable = false)
-    private Calendar dataCadastro;
+    private LocalDate dataCadastro;
 
     @ManyToOne
     @JoinColumn(name = "id_clinica", nullable = false)
@@ -46,7 +45,7 @@ public class Dentista {
 
     public Dentista() {}
 
-    public Dentista(String nome, String cro, String email, int telefone, Genero genero, Status status, Clinica clinica) {
+    public Dentista(String nome, String cro, String email, Long telefone, Genero genero, Status status, Clinica clinica) {
         this.nome = nome;
         this.cro = cro;
         this.email = email;
@@ -80,11 +79,11 @@ public class Dentista {
         this.cro = cro;
     }
 
-    public int getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 
@@ -112,16 +111,16 @@ public class Dentista {
         this.email = email;
     }
 
-    public Calendar getDataCadastro() {
+    public Clinica getClinica() {
+        return clinica;
+    }
+
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Calendar dataCadastro) {
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
-    }
-
-    public Clinica getClinica() {
-        return clinica;
     }
 
     public void setClinica(Clinica clinica) {
